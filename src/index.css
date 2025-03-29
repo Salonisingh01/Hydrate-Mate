@@ -1,1 +1,29 @@
 @import "tailwindcss";
+/* @theme {
+  --font-display: "Satoshi", "sans-serif";
+  --breakpoint-3xl: 120rem;
+  --color-avocado-100: oklch(0.99 0 0);
+  --color-avocado-200: oklch(0.98 0.04 113.22);
+  --color-avocado-300: oklch(0.94 0.11 115.03);
+} */
+
+@theme{
+ --color-primary: #F19509;
+ --color-primaryDark: #E86F00;
+ --color-lightOrange: #F1DAbF;
+ --color-darkGary :#1A1F25;
+ --color-lightGray :#272C35;
+ --container-center: true;
+ --container-padding: 1rem;
+ --container-padding-sm: 2rem;
+}
+
+@layer utilities {
+    .img-shadow{
+        filter: drop-shadow(40px 50px 25px #0F1115);
+    }
+    .img-shadow2{
+        filter: drop-shadow(10px 30px 15px #3030307A);
+    }
+}
+
