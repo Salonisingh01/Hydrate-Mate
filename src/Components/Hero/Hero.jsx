@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import BgImage from '../../assets/bg-slate.png';
 import BlackCoffee from '../../assets/black.png';
 import Navbar from '../Navbar/Navbar';
 import { motion } from "motion/react"
+import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
 
 const bgImage = {
     backgroundImage: `url(${BgImage})`,
@@ -12,6 +13,7 @@ const bgImage = {
 }
 
 const Hero = () => {
+    const [sidebar, setSidebar] = useState(false);
     return (
         <main style={bgImage}>
 
@@ -19,7 +21,7 @@ const Hero = () => {
                 <div className="container">
 
                     {/* Navbar Section Here  */}
-                    <Navbar />
+                    <Navbar sidebar={sidebar} setSidebar={setSidebar} />
 
                     {/* Hero Section Here  */}
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center min-h-[850px]' >
@@ -52,31 +54,31 @@ const Hero = () => {
                         </div>
                         {/* Hero Image Section  */}
                         <div className='relative'>
-                            <motion.img  
-                             initial={{ opacity: 0, scale: 0 }} 
-                             animate={{ opacity: 1, scale: 1 }}
-                             transition={{ 
-                                    type: 'spring', 
-                                    stiffness: 100, 
-                                    damping: 10, delay: 0.4 
-                                }} 
-                              src={BlackCoffee} alt='' className='relative z-40 h-[400px] md:h-[700px] img-shadow' />
+                            <motion.img
+                                initial={{ opacity: 0, scale: 0 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{
+                                    type: 'spring',
+                                    stiffness: 100,
+                                    damping: 10, delay: 0.4
+                                }}
+                                src={BlackCoffee} alt='' className='relative z-40 h-[400px] md:h-[700px] img-shadow' />
 
                             {/* ring circle */}
-                            <motion.div 
-                               initial={{ opacity: 0, y: 100 }}
-                               animate={{ opacity: 1, y: 0 }}
-                               transition={{ type: 'spring', stiffness: 100, damping: 10, delay: 0.8 }}
-                               
-                            className=' h-[180px] w-[180px] absolute top-24 -right-16 border-[var(--color-primary)] border-[20px] rounded-full z-10'></motion.div>
+                            <motion.div
+                                initial={{ opacity: 0, y: 100 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ type: 'spring', stiffness: 100, damping: 10, delay: 0.8 }}
+
+                                className=' h-[180px] w-[180px] absolute top-24 -right-16 border-[var(--color-primary)] border-[20px] rounded-full z-10'></motion.div>
 
                             {/* Big text  section */}
-                            <motion.div 
-                             initial={{ opacity: 0, x: -100 }}
-                             animate={{ opacity: 1, x: 0 }}
-                             transition={{ type: 'spring', stiffness: 100, damping: 10, delay: 0.8 }}
-                              
-                             className='absolute -top-10 left-[350px] z-[1]'>
+                            <motion.div
+                                initial={{ opacity: 0, x: -100 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ type: 'spring', stiffness: 100, damping: 10, delay: 0.8 }}
+
+                                className='absolute -top-10 left-[350px] z-[1]'>
                                 <h1 className='text-[120px] scale-150 font-bold text-[var(--color-darkGary)]/40 leading-none]'>
                                     Blvck Tumbler
                                 </h1>
@@ -84,12 +86,12 @@ const Hero = () => {
                             </motion.div>
                         </div>
                         {/* third div section */}
-                        <motion.div 
-                         initial={{ opacity: 0, y: 100 }}
-                         animate={{ opacity: 1, y: 0 }}
-                         transition={{ type: 'spring', stiffness: 100, damping: 10, delay: 1.2 }}
-                         
-                         className='text-[var(--color-lightOrange)] mt-[100px] md:mt-0 p-4 space-y-28'>
+                        <motion.div
+                            initial={{ opacity: 0, y: 100 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ type: 'spring', stiffness: 100, damping: 10, delay: 1.2 }}
+
+                            className='text-[var(--color-lightOrange)] mt-[100px] md:mt-0 p-4 space-y-28'>
 
                             <h1 className='opacity-0 text-7xl font-bold leading-tight ml-14' >Hydrate Mate</h1>
                             <div className='relative'>
@@ -110,8 +112,40 @@ const Hero = () => {
                         <div></div>
                     </div>
                 </div>
-                
-  {/* sidebar bar menu Section  */}
+
+                {/* sidebar bar menu Section  */}
+                {
+                    sidebar && (
+
+                        <motion.div
+                         initial={{x:"100%"}}
+                         whileInView={{x:0}}
+                         className='absolute top-0 right-0 w-[140px] h-full bg-gradient-to-b from-primary/80 to-primaryDark/80 backdrop-blur-sm z-10'>
+                            <div className='w-full h-full flex justify-center items-center'>
+                                <div className=' flex flex-col justify-center items-center gap-6 text-white'>
+                                    {/* Line */}
+                                    <div className='w-[1px] h-[70px] bg-white'></div>
+
+                                    {/* Social Icons */}
+                                    <div className='inline-block p-2 rounded-full cursor-pointer border border-white'>
+                                        <FaFacebookF className='text-2xl' />
+                                    </div>
+                                    <div className='inline-block p-2 rounded-full cursor-pointer border border-white' >
+                                        <FaTwitter className='text-2xl' />
+                                    </div>
+                                    <div className='inline-block p-2 rounded-full cursor-pointer border border-white'>
+                                        <FaInstagram className='text-2xl' />
+                                    </div>
+                                    <div className='w-[1px] h-[70px] bg-white'></div>
+
+                                </div>
+                            </div>
+                        </motion.div>
+
+                    )
+                }
+
+
 
             </section>
 
